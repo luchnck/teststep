@@ -6,4 +6,4 @@ sudo ln -s /home/box/web/hello.py   /etc/gunicorn.d/test
 sudo /etc/init.d/gunicorn restart
 cd /home/box/web/
 sudo gunicorn -b 0.0.0.0:8080 -c /home/box/web/etc/gunicorn.conf hello:app &
-sudo gunicorn-django -b 0.0.0.0:8000 ask/ask/settings.py
+sudo gunicorn_django -b 0.0.0.0:8000 ask/ask/settings.py &
