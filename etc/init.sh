@@ -8,4 +8,5 @@ sudo ln -s /home/box/web/hello.py   /etc/gunicorn.d/test
 sudo /etc/init.d/gunicorn stop
 cd /home/box/web/
 sudo gunicorn -b 0.0.0.0:8080 -c /home/box/web/etc/gunicorn.conf hello:app &
-sudo gunicorn -b 0.0.0.0:8000 -c /home/box/web/etc/gunicorn_ask.conf --access-logfile acc.log --error-logfile err.log  /home/box/web/ask/ask/settings.py &
+cd ask
+sudo gunicorn -b 0.0.0.0:8000 -c /home/box/web/etc/gunicorn_ask.conf --access-logfile acc.log --error-logfile err.log wsgi:application &
