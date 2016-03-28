@@ -5,7 +5,7 @@ from django.contrib.auth.models, import User
 from django.db import models
 
 # Create your models here.
-class Question(models.model)
+class Question(models.model):
 	title = models.CharField(max_length=255)
 	text = models.TextField()
 	added_at = models.DateTimeField()
@@ -23,7 +23,7 @@ class Question(models.model)
 		db_table = "questions"
 		ordering = ['-added_at']
 
-class Answer(models.model)
+class Answer(models.model):
 	text = models.TextField()
 	added_at = models.DateTimeField()
 	question = models.ForeignKey(Question, on_delete = models.DO_NOTHING)
@@ -39,6 +39,10 @@ class Answer(models.model)
 		db_table = "answers"
 		ordering = ['-added_at']
 
-class Likes(models.model)
+class Likes(models.model):
 	question = ForeignKey(Question, on_delete = models.DO_NOTHING)
 	users = ForeignKey(User, on_delete = models.DO_NOTHING)
+
+	class Meta:
+		db_table = "likes"
+		ordering = ['-question']
