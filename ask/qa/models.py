@@ -11,7 +11,7 @@ class Question(models.Model):
 	added_at = models.DateTimeField()
 	rating = models.IntegerField()
 	author = models.CharField(max_length=255)
-	likes = models.ForeignKey(Likes, on_delete = models.CASCADE)
+	likes = models.ManyToManyField(User)
 	
 	def __unicode__(self):
 		return self.title
@@ -39,10 +39,3 @@ class Answer(models.Model):
 		db_table = "answers"
 		ordering = ['-added_at']
 
-class Likes(models.Model):
-	question = ForeignKey(Question, on_delete = models.DO_NOTHING)
-	users = ForeignKey(User, on_delete = models.DO_NOTHING)
-
-	class Meta:
-		db_table = "likes"
-		ordering = ['-question']
