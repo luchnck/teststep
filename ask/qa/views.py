@@ -12,7 +12,7 @@ def test(request, *args, **kwargs):
 def latest(request, *args, **kwargs):
 	questions = Question.objects.all().order_by('added_at')[:10]
 	c = Context({"questions" : questions})
-	return render_to_response('qa/latest.html')
+	return render_to_response('latest.html', c)
 	
 
 # Create your views here.
