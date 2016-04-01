@@ -24,6 +24,6 @@ urlpatterns = [
     url(r'^ask/.*$',views.test),
     url(r'^popular/$', views.test),
     url(r'^new/$',views.test),
-    url(r'^?page=(?P<pageId>\d+)/$',views.latest),
+    url(r'^\?page\=(?P<pageId>\d+)/$',views.latest),
     url(r'^$',views.latest),
 ]
