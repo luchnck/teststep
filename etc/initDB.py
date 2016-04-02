@@ -1,0 +1,36 @@
+from django.db import models
+
+from qa.models import Question,Answer
+
+from django.contrib.auth.models import User
+
+from datetime import datetime
+
+user = User(username='luchnck',email='luchnck@yandex.ru', password='123456')
+user.save()
+user = User(username='max',email='luchnck@yandex.ru', password='123456')
+user.save()
+
+questions = [
+	["first","how much is the fish",datetime.now(),0,0,User.objects.get(pk=1)],
+	["second","WTF 0_o ???", datetime.now(),0,0,User.objects.get(pk=3)],
+	["third","what is the time now??", datetime.now(),0,0,User.objects.get(pk=1)],
+	]
+
+for question in questions:
+	title,text,added_at,rating,likes,author = question
+	question=Question(title=title,text=text,added_at=added_at,rating=rating,author=author)
+	question.save()
+
+answers = [
+	["dorogo",datetime.now(),Question.objects.get(title="first"),User.objects.get(pk=3)],
+	["togo!togo",datetime.now(),Question.objects.get(title="second"),User.objects.get(pk=1)],
+	["13:00 o clock!!", datetime.now(),Question.objects.get(title="second"),User.objects.get(pk=1)],
+	]
+
+for answer in answers:
+	text,added_at,question,author = answer
+	answer=Answer(text=text,added_at=added_at,question=question,author=author)
+	answer.save()
+
+
