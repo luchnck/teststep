@@ -81,12 +81,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'qa_service',
-	'USER': 'enth',
+	'USER': luchnck',
 	'PASSWORD' : 'password',
 	'HOST' : 'localhost',
 	'PORT' : '',
     }
 }
+
 
 
 # Password validation
