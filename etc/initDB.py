@@ -15,6 +15,19 @@ questions = [
 	["first","how much is the fish",datetime.now(),0,0,User.objects.get(username="luchnck")],
 	["second","WTF 0_o ???", datetime.now(),0,0,User.objects.get(username="max")],
 	["third","what is the time now??", datetime.now(),0,0,User.objects.get(username="max")],
+	["forth","htw much is the fish",datetime.now(),0,0,User.objects.get(username="luchnck")],
+	["fifth","WTF 0_o ???", datetime.now(),0,0,User.objects.get(username="max")],
+	["sixth","what is the time now??", datetime.now(),0,0,User.objects.get(username="max")],
+	["seventh","how much is the fish",datetime.now(),0,0,User.objects.get(username="luchnck")],
+	["eghth","WTF 0_o ???", datetime.now(),0,0,User.objects.get(username="max")],
+	["ninegth","what is the time now??", datetime.now(),0,0,User.objects.get(username="max")],
+	["tenth","how much is the fish",datetime.now(),0,0,User.objects.get(username="luchnck")],
+	["eleven","WTF 0_o ???", datetime.now(),0,0,User.objects.get(username="max")],
+	["tvelve","what is the time now??", datetime.now(),0,0,User.objects.get(username="max")],		
+	["forteen","how much is the fish",datetime.now(),0,0,User.objects.get(username="luchnck")],
+	["sixteenth","WTF 0_o ???", datetime.now(),0,0,User.objects.get(username="max")],
+	["eigtheenth","what is the time now??", datetime.now(),0,0,User.objects.get(username="max")],		
+			
 	]
 
 for question in questions:

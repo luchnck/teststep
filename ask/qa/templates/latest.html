@@ -1,3 +1,12 @@
+{% extends "base.html" %}
+{% block title %} Самые-самые {% endblock %}
+{% block content %}
 <div class="questions">
 	<h1>Последние добавленные вопросы</h1>
+	{% for question in questions %}
+    	<h2>{{ question.title }}</h2> <div>{{ question.added_at }}</div>
+	<div>{{ question.text }}</div>
+	<div>{{ question.author }}</div>
+{% endfor %}
 <div/>
+{% endblock %}
