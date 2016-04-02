@@ -12,9 +12,9 @@ user = User(username='max',email='luchnck@yandex.ru', password='123456')
 user.save()
 
 questions = [
-	["first","how much is the fish",datetime.now(),0,0,User.objects.get(pk=1)],
-	["second","WTF 0_o ???", datetime.now(),0,0,User.objects.get(pk=3)],
-	["third","what is the time now??", datetime.now(),0,0,User.objects.get(pk=1)],
+	["first","how much is the fish",datetime.now(),0,0,User.objects.get(username="luchnck")],
+	["second","WTF 0_o ???", datetime.now(),0,0,User.objects.get(username="max")],
+	["third","what is the time now??", datetime.now(),0,0,User.objects.get(username="max")],
 	]
 
 for question in questions:
@@ -23,9 +23,9 @@ for question in questions:
 	question.save()
 
 answers = [
-	["dorogo",datetime.now(),Question.objects.get(title="first"),User.objects.get(pk=3)],
-	["togo!togo",datetime.now(),Question.objects.get(title="second"),User.objects.get(pk=1)],
-	["13:00 o clock!!", datetime.now(),Question.objects.get(title="second"),User.objects.get(pk=1)],
+	["dorogo",datetime.now(),Question.objects.get(title="first"),User.objects.get(username="max")],
+	["togo!togo",datetime.now(),Question.objects.get(title="second"),User.objects.get(username="luchnck")],
+	["13:00 o clock!!", datetime.now(),Question.objects.get(title="second"),User.objects.get(username="luchnck")],
 	]
 
 for answer in answers:

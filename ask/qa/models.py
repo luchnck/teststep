@@ -10,9 +10,9 @@ class Question(models.Model):
 	text = models.TextField()
 	added_at = models.DateTimeField()
 	rating = models.IntegerField()
-	author = models.CharField(max_length=255)
-	likes = models.ManyToManyField(User)
-	
+	likes = models.ManyToManyField(User, related_name='likes_id')
+	author = models.ForeignKey(User, on_delete = models.DO_NOTHING)
+
 	def __unicode__(self):
 		return self.title
 
