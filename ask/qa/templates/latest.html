@@ -15,7 +15,7 @@
 		</li>
 	{% endfor %}
 {% for question in questions %}
-    	<h2>{{ question.title }}</h2>
+    	<a href="/question/{{question.id}}/"><h2>{{ question.title }}</h2>
 	<div>Рейтинг:{{ question.rating }}</div> 
 	<div>{{ question.added_at }}</div>
 	<div>{{ question.text }}</div>
