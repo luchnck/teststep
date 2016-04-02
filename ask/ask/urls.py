@@ -20,10 +20,10 @@ from qa import views
 urlpatterns = [
     url(r'^login/$', views.test),
     url(r'^signup/$', views.test),
-    url(r'^question/(?P<qId>\d+/$)', views.test),
+    url(r'^question/(?P<questionId>\d+)/$', views.single),
     url(r'^ask/.*$',views.test),
-    url(r'^popular/$', views.test),
+    url(r'^popular/$', views.most_related),
     url(r'^new/$',views.test),
-    url(r'^\?page\=(?P<pageId>\d+)/$',views.latest),
+    url(r'^\?page\=\d+$',views.latest),
     url(r'^$',views.latest),
 ]

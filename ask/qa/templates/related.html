@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Самые-самые {% endblock %}
+{% block content %}
+<div class="questions">
+	<h1>Самые классные вопросы</h1>
+	<ul class="paginator">
+	{% for p in paginator.page_range %}
+	  {% if p == page.number %}
+		<li class="active">
+	  {% else %}
+		<li>
+	  {% endif %}
+	    		<a href="{{ paginator.baseurl }}{{ p }}">
+			{{p}}</a>
+		</li>
+	{% endfor %}
+{% for question in questions %}
+    	<h2>{{ question.title }}</h2>
+	<div>Рейтинг:{{ question.rating }}</div> 
+	<div>{{ question.added_at }}</div>
+	<div>{{ question.text }}</div>
+	<div>Залайковано:{{ question.likes }} </div>
+	<div>{{ question.author }}</div>
+{% endfor %}
+<div/>
+{% endblock %}

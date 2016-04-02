@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Самые-самые {% endblock %}
+{% block content %}
+<div class="question">
+	<h1>Конкретный вопрос!</h1>
+	<h2>{{question.title}}</h2>
+	<div>{{question.text}}<div/>
+{% for answer in answers %}
+    	<h2>{{ answer.title }}</h2>
+	<div>{{ answer.text }}</div>
+	<div>{{ answer.author }}</div>
+{% endfor %}
+<div/>
+{% endblock %}
