@@ -1,6 +1,6 @@
 git config --global user.name "luchnck"
 git config --global user.email "luchnck@yandex.ru"
-#sudo pip install --upgrade django
+sudo pip install --upgrade django
 sudo mv /home/box/teststep /home/box/web
 sudo rm /etc/nginx/sites-enabled/default
 sudo ln -s /home/box/web/etc/nginx.conf  /etc/nginx/sites-enabled/test.conf
