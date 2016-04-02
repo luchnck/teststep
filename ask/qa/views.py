@@ -9,7 +9,7 @@ def test(request, *args, **kwargs):
 	return HttpResponse('OK')
 
 def latest(request, *args, **kwargs):
-	questions = Question.objects.all().order_by('added_at')[:100]
+	questions = Question.objects.all().order_by('-added_at')
 	paginator = Paginator(questions,10)
 	page = request.GET.get('page',1)
 	paginator.baseurl = '?page='
@@ -22,7 +22,7 @@ def latest(request, *args, **kwargs):
 	return render_to_response('latest.html', c)
 
 def most_related(request, *args, **kwargs):
-	questions = Question.objects.all().order_by('-rating')[:100]
+	questions = Question.objects.all().order_by('-rating')
 	paginator = Paginator(questions,10)
 	page = request.GET.get('page',1)
 	paginator.baseurl = "/popular/?page="
