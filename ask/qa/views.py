@@ -30,7 +30,7 @@ def most_related(request, *args, **kwargs):
 	c = {	
 		"paginator" : paginator,
 		"page" : page,
-		"questions" : questions,
+		"questions" : page.object_list,
 		}	
 	return render_to_response('related.html', c)
 
