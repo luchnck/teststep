@@ -14,7 +14,7 @@ import time
 class Question(models.Model):
 	title = models.CharField(max_length=255)
 	text = models.TextField()
-	added_at = models.DateTimeField(default=now())
+	added_at = models.DateTimeField(auto_now_add=True)
 	rating = models.IntegerField(default=0)
 	likes = models.IntegerField(default=0)
 	author = models.ForeignKey(User, on_delete = models.DO_NOTHING)
@@ -31,7 +31,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
 	text = models.TextField()
-	added_at = models.DateTimeField(default=now())
+	added_at = models.DateTimeField(auto_now_add=True)
 	question = models.ForeignKey(Question, on_delete = models.DO_NOTHING)
 	author = models.ForeignKey(User, on_delete = models.DO_NOTHING)
 	
