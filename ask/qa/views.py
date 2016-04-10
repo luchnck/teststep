@@ -40,7 +40,7 @@ def single(request, *args, **kwargs):
 	if (request.method == "GET"):
 		addAnswer = AnswerForm()
 	else:
-		addAnswer = AnswerFrom(request.POST)
+		return HttpResponse("OK")
 
 	try:
 		question = Question.objects.get(pk=questionId)

@@ -20,12 +20,13 @@ class AskForm(forms.Form):
 
 class AnswerForm(forms.Form):
 	text = forms.CharField(widget=forms.Textarea)
-	
+	question = forms.IntegerField()	
+
 	def save(self, **kwargs):
 		answer = Answer(**self.cleaned_data)
-		question_id = re.findall(r'/question/(\d+)/',kwargs['HTTP_REFERER'])
+#		question_id = re.findall(r'/question/(\d+)/',kwargs['HTTP_REFERER'])
 		answer.author_id = 1
-		answer.question_id = int(question_id[0]) 
+#		answer.question_id = int(question_id[0]) 
 		answer.save()
 		return answer
  
