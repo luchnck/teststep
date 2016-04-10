@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %} Задавай, не стесняйся! {% endblock %}
+{% block content %}
+<div class="question">
+	<form method="post" action="/ask/" id="ask">
+		{{form.as_p}}
+		<button type="submit" value="Задать вопрос">Задать вопрос</button>
+		{% csrf_token %}
+	</form>
+<div/>
+{% endblock %}

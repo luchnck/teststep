@@ -23,7 +23,7 @@ class Question(models.Model):
 		return self.title
 
 	def get_absolute_url(self):
-		return 'question/%s/' % self.pk
+		return '/question/%s/' % self.pk
 	
 	class Meta:
 		db_table = "questions"
@@ -39,7 +39,7 @@ class Answer(models.Model):
 		return self.text
 
 	def get_absolute_url(self):
-		return "question/%s/#Answer%s" % self.question.pk, self.pk
+		return "/question/%s/#Answer%s" % (self.question.pk, self.pk)
 
 	class Meta:
 		db_table = "answers"

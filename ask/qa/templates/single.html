@@ -5,6 +5,15 @@
 	<h1>Конкретный вопрос!</h1>
 	<h2>{{question.title}}</h2>
 	<div>{{question.text}}<div/>
+</div>
+<div class="add-answer">
+	<form action="/answer/" method="POST">
+		{{ addAnswer.as_p }}
+		{% csrf_token  %}
+		<button type="submit">Поделиться ответом</>
+	</form>
+</div>
+<div class="answers">
 {% for answer in answers %}
     	<h2>{{ answer.title }}</h2>
 	<div>{{ answer.text }}</div>
