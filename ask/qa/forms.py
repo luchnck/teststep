@@ -1,5 +1,7 @@
 from django import forms
 from qa.models import Question,Answer
+from django.contrib.auth.models import User
+
 import re
 
 class AskForm(forms.Form):
@@ -28,4 +30,15 @@ class AnswerForm(forms.Form):
 		answer.question_id = int(question_id[0]) 
 		answer.save()
 		return answer
- 
+
+
+class SignupForm(forms.Form):
+	username = forms.CharField()
+	password = forms.CharField(widget=forms.PasswordInput)
+	email = forms.EmailField()
+
+	def save(self, **kwargs):
+		user = User(**self.cleaned_data)
+		user.save()
+		return user
+

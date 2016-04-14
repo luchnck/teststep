@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import Context, Template
 from models import Question,Answer
 from django.core.paginator import Paginator
-from forms import AskForm,AnswerForm
+from forms import AskForm,AnswerForm,SignupForm
 
 def test(request, *args, **kwargs):
 	return HttpResponse('OK')
@@ -80,5 +80,18 @@ def answer(request, *args, **kwargs):
 		return HttpResponseRedirect(url)
 	else:
 		return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def signup(request):
+	if (request.method == "GET"):
+		newUserForm = SignupForm()
+	else: 
+		newUserForm = SignupForm(request.POST)
+		if newUserForm.is_valid():
+			user = newUserForm.save()
+			#login here!!!
+			return HttpResponseRedirect('/')
+	return render(request,'signup.html',{
+		"form": newUserForm,
+		})
 
 # Create your views here.

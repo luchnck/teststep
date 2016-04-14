@@ -19,7 +19,6 @@ from qa import views
 
 urlpatterns = [
     url(r'^login/$', views.test),
-    url(r'^signup/$', views.test),
     url(r'^question/(?P<questionId>\d+)/$', views.single),
     url(r'^ask/.*$',views.ask),
     url(r'^popular/$', views.most_related),
@@ -27,4 +26,5 @@ urlpatterns = [
     url(r'^\?page\=\d+$',views.latest),
     url(r'^answer/$', views.answer),
     url(r'^$',views.latest),
+    url(r'^signup/$', views.signup),
 ]
