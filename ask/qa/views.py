@@ -94,4 +94,12 @@ def signup(request):
 		"form": newUserForm,
 		})
 
+
+def login(request):
+	if (request.method == "GET"):
+		loginForm = LoginForm()
+	
+	return render(request,'login.html',{
+		"form" : loginForm,
+		})
 # Create your views here.

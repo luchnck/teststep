@@ -1,7 +1,8 @@
 from django import forms
 from qa.models import Question,Answer
 from django.contrib.auth.models import User
-
+from django.contrib.auth import authenticate,login
+from pprint import pprint
 import re
 
 class AskForm(forms.Form):
@@ -37,9 +38,30 @@ class SignupForm(forms.Form):
 	username = forms.CharField()
 	password = forms.CharField(widget=forms.PasswordInput)
 	email = forms.EmailField()
+	
+	def clean_username(self):
+		user = User.objects.filter(username = self.cleaned_data['username'])
+		count = user.count()
+		if (count == 0):		
+			return self.cleaned_data['username']	 
+		else:	
+			raise forms.ValidationError(u'%s user already exists!' % self.cleaned_data['username'])
 
 	def save(self, **kwargs):
-		user = User(**self.cleaned_data)
-		user.save()
+		username = self.cleaned_data['username']
+		password = self.cleaned_data['password']
+		email = self.cleaned_data['email']
+		user = User.objects.create_user(username,email,password)
 		return user
 
+
+class LoginForm(forms.Form):
+	username = forms.CharField()
+	password = forms.CharField(widget = forms.PasswordInput)
+	
+	def is_valid( self, **kwargs):
+		user = authenticate(self.cleaned_data)
+		if user is not None:
+			return true
+		else:
+			return false
