@@ -50,6 +50,6 @@ class Answer(models.Model):
 		ordering = ['-added_at']
 
 def do_login(response, user):
-	sessionid = hashlib.md5(user.username + ':' + datetime.now().ctime()).hexdigest()
+	sessionid = hashlib.md5(user.username + ':' + (datetime.now().microsecond).__str__()).hexdigest()
 	session = Session.objects.create(session_key = sessionid, session_data = user.pk, expire_date = datetime.now()+timedelta(days=5))
 	return session
