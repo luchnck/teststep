@@ -8,7 +8,7 @@ import re
 class AskForm(forms.Form):
 	title = forms.CharField(max_length=255)
 	text = forms.CharField(widget=forms.Textarea)
-	
+	_user = 0 
 #	def clean(self):
 #		title = self.cleaned_data['title']
 #		if (title == string.empty):
@@ -17,18 +17,19 @@ class AskForm(forms.Form):
 
 	def save(self):
 		question = Question(**self.cleaned_data)
-		question.author_id = 1
+		question.author_id = self._user
 		question.save()
 		return question
 
 class AnswerForm(forms.Form):
 	text = forms.CharField(widget=forms.Textarea)
 	question = forms.IntegerField()	
+	_user = 0
 
 	def save(self, **kwargs):
 		answer = Answer(**self.cleaned_data)
 #		question_id = re.findall(r'/question/(\d+)/',kwargs['HTTP_REFERER'])
-		answer.author_id = 1
+		answer.author_id = self._user
 #		answer.question_id = int(question_id[0]) 
 		answer.save()
 		return answer
@@ -59,9 +60,3 @@ class LoginForm(forms.Form):
 	username = forms.CharField()
 	password = forms.CharField(widget = forms.PasswordInput)
 	
-	def is_valid( self, **kwargs):
-		user = authenticate(self.cleaned_data)
-		if user is not None:
-			return true
-		else:
-			return false

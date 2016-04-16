@@ -1,9 +1,10 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import Context, Template
-from models import Question,Answer
+from django.contrib.auth import login, authenticate
+from models import Question,Answer, do_login
 from django.core.paginator import Paginator
-from forms import AskForm,AnswerForm,SignupForm
+from forms import AskForm,AnswerForm,SignupForm,LoginForm
 
 def test(request, *args, **kwargs):
 	return HttpResponse('OK')
@@ -60,6 +61,7 @@ def ask(request, *args, **kwargs):
 		form = AskForm()
 	else:
 		form = AskForm(request.POST)
+		form._user = request.user
 		if (form.is_valid()):
 			post = form.save()
 			url = post.get_absolute_url()
@@ -67,6 +69,7 @@ def ask(request, *args, **kwargs):
 
 	return render(request, 'ask.html',{
 		"form": form,
+		"_user" : request.user
 		})
 
 def answer(request, *args, **kwargs):
@@ -74,6 +77,7 @@ def answer(request, *args, **kwargs):
 		return HttpResponseRedirect("/")
 	
 	answer = AnswerForm(request.POST)
+	answer._user = request.user
 	if answer.is_valid():
 		answer = answer.save(HTTP_REFERER = request.META.get('HTTP_REFERER'))
 		url = answer.get_absolute_url()
@@ -95,10 +99,20 @@ def signup(request):
 		})
 
 
-def login(request):
+def logining(request):
 	if (request.method == "GET"):
 		loginForm = LoginForm()
-	
+	else:
+		loginForm = LoginForm(request.POST)
+		if loginForm.is_valid():
+			user = authenticate(username=loginForm.data['username'], password=loginForm.data['password'])
+			if (user is not None):
+				session = do_login(request,user)
+				response = HttpResponseRedirect('/')
+				response.set_cookie('sessionid', session.session_key, domain='.localhost', httponly=True, expires = session.expire_date)
+				return response
+			else:
+				loginForm.add_error(filed=None, error="wrong login/pass")	 
 	return render(request,'login.html',{
 		"form" : loginForm,
 		})

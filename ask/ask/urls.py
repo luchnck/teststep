@@ -18,7 +18,7 @@ from django.contrib import admin
 from qa import views
 
 urlpatterns = [
-    url(r'^login/$', views.login),
+    url(r'^login/$', views.logining),
     url(r'^question/(?P<questionId>\d+)/$', views.single),
     url(r'^ask/.*$',views.ask),
     url(r'^popular/$', views.most_related),

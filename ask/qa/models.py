@@ -2,13 +2,17 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
 
+from django.contrib.sessions.models import Session
+
 from django.db import models
 
-from datetime import datetime
+from datetime import datetime,timedelta
 
 from django.utils.timezone import now
 
 import time
+
+import hashlib
 
 # Create your models here.
 class Question(models.Model):
@@ -45,3 +49,7 @@ class Answer(models.Model):
 		db_table = "answers"
 		ordering = ['-added_at']
 
+def do_login(response, user):
+	sessionid = hashlib.md5(user.username + ':' + datetime.now().ctime()).hexdigest()
+	session = Session.objects.create(session_key = sessionid, session_data = user.pk, expire_date = datetime.now()+timedelta(days=5))
+	return session
