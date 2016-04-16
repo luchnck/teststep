@@ -92,8 +92,8 @@ def signup(request):
 		newUserForm = SignupForm(request.POST)
 		if newUserForm.is_valid():
 			user = newUserForm.save()
-			#login here!!!
-			return HttpResponseRedirect('/')
+			return logining(request)
+			#return HttpResponseRedirect('/')
 	return render(request,'signup.html',{
 		"form": newUserForm,
 		})
